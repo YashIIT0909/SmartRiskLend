@@ -10,7 +10,7 @@ interface ILendingPoolParam {
 interface IRiskRegistryAdmin {
     function setPauseThreshold(uint256 newThreshold) external;
 
-    function updateSigner(address newSigner) external;
+    function updateAI(address newAI) external;
 }
 
 interface IRiskGuardian {
@@ -69,10 +69,10 @@ contract Governance {
         emit PauseThresholdUpdated(val);
     }
 
-    // Rotate AI agent EIP-712 signing key
-    function updateAgentSigner(address newSigner) external onlyAdmin {
-        IRiskRegistryAdmin(riskRegistry).updateSigner(newSigner);
-        emit SignerRotated(newSigner);
+    // Rotate AI agent address
+    function updateAgentSigner(address newAI) external onlyAdmin {
+        IRiskRegistryAdmin(riskRegistry).updateAI(newAI);
+        emit SignerRotated(newAI);
     }
 
     // Rotate risk guardian
